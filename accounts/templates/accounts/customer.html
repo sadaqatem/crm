@@ -28,6 +28,9 @@
 	<div class="col-md">
 		<div class="card card-body">
 			<h5>Total Orders</h5>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'create_order' customer.id %}">Place a new order</a>
+			{% comment %} <a class="btn btn-outline-info  btn-sm btn-block" href="">Place a new order</a>  {% endcomment %}
+
 			<hr>
 			<h1 style="text-align: center;padding: 10px">{{total_orders}}</h1>
 		</div>
@@ -40,10 +43,11 @@
 	<div class="col">
 		<div class="card card-body">
 			<form method="get">
-		    {% for field in filter.form %}
+				{{orderFilter.form}}
+		    {% comment %} {% for field in filter.form %}
 		    	{{field.label}}
 		    	{{field|add_class:'form-control-sm'}}
-		    {% endfor %}
+		    {% endfor %} {% endcomment %}
 		    <button class="btn btn-primary" type="submit">Search</button>
 		  </form>
 		</div>
@@ -51,6 +55,9 @@
 	
 </div>
 <br>
+
+
+
 
 <div class="row">
 	<div class="col-md">
@@ -72,6 +79,7 @@
 						<td>{{order.status}}</td>
 						<td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
 						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Cancel</a></td>
+
 					</tr>
 				{% endfor %}
 			</table>
